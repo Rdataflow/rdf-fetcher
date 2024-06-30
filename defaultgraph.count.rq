@@ -1,0 +1,6 @@
+SELECT ?g (COUNT(?s) AS ?count) WHERE {
+?s ?p ?o
+}
+GROUP BY ?g
+ORDER BY ?count
+LIMIT 1000

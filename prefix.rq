@@ -1,0 +1,24 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX cube: <https://cube.link/>
+PREFIX meta: <https://cube.link/meta/>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX unit: <http://qudt.org/vocab/unit/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX dwc: <http://rs.tdwg.org/dwc/terms/>
+  PREFIX colt: <https://www.catalogueoflife.org/data/taxon/>
+  PREFIX tbparec: <http://tb.plazi.org/GgServer/dwcaRecords/>
+  PREFIX plazitt: <http://plazi.org/vocab/treatment#>
+  PREFIX ttplazi: <http://treatment.plazi.org/id/>
+PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX gn: <http://www.geonames.org/ontology#>

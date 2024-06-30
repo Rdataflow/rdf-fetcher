@@ -1,0 +1,45 @@
+name: Fetch
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0'
+
+jobs:
+  fetch:
+    name: Fetch endpoint 📍 ${{ matrix.endpoint }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - endpoint: https://ld.admin.ch/query
+            name: lindas
+          - endpoint: https://geo.ld.admin.ch/query
+            name: geo-admin
+#          - endpoint: https://fedlex.data.admin.ch/sparqlendpoint
+#            name: fedlex
+#            defaultgraph: true
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get install lbzip2
+      - name: Get list of Graphs 🧊
+        run: |
+          until `[ -s graphs.csv ]` ; do curl ${{ matrix.endpoint }} -f -s -X POST -H 'Accept: text/csv' -H 'Content-Type: application/sparql-query' --data-binary @${{ matrix.defaultgraph && 'default' }}graph.count.rq -o graphs.csv || sleep 5 ; done
+      - name: Fetch graphs 🔎
+        continue-on-error: true
+        run: |
+          ./fetch.sh graphs.csv ${{ matrix.endpoint }}
+      - name: List output
+        run: |
+          cd out ; ls -gorRS
+      - name: Upload ${{ matrix.name }} artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: 'out/**'
+          compression-level: 0
+          if-no-files-found: 'error'
