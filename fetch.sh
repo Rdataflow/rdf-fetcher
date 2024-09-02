@@ -23,7 +23,7 @@ do
 	do cat prefix.rq graph.fetch.offset.rq \
             | envsubst \
             | sed 's~<>~?g~' \
-            | curl ${ENDPOINT} -f -s -X POST -H 'Accept: text/turtle' -H 'Content-Type: application/sparql-query' --data-binary @- -o - \
+            | curl ${ENDPOINT} -f -s --compressed -X POST -H 'Accept: text/turtle' -H 'Content-Type: application/sparql-query' --data-binary @- -o - \
             | lbzip2 > out/$(base ${ENDPOINT})/$(base ${graph}).${chunk}.ttl.bz2
         done
 

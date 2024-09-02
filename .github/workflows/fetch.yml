@@ -27,7 +27,7 @@ jobs:
           sudo apt-get install lbzip2
       - name: Get list of Graphs 🧊
         run: |
-          until `[ -s graphs.csv ]` ; do curl ${{ matrix.endpoint }} -f -s -X POST -H 'Accept: text/csv' -H 'Content-Type: application/sparql-query' --data-binary @${{ matrix.defaultgraph && 'default' }}graph.count.rq -o graphs.csv || sleep 5 ; done
+          until `[ -s graphs.csv ]` ; do curl ${{ matrix.endpoint }} -f -s --compressed -X POST -H 'Accept: text/csv' -H 'Content-Type: application/sparql-query' --data-binary @${{ matrix.defaultgraph && 'default' }}graph.count.rq -o graphs.csv || sleep 5 ; done
       - name: Fetch graphs 🔎
         continue-on-error: true
         run: |
