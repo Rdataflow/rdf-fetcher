@@ -2,7 +2,7 @@
 export CHUNKSIZE=10000000
 ENDPOINT=${2:-${ENDPOINT}}
 
-function base { echo -n "${1//[^A-Za-z0-9 -]/_}" ; }
+function base { echo -n $1 | jq -sRr @uri ; }
 function tidy { echo -n ${1} | sed -e "s~^\s*\"*~~" | sed -e "s~\"*\s*$~~" ; }
 
 while IFS="," read -r graph numtriples
