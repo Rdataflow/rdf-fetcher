@@ -37,7 +37,7 @@ jobs:
           cd out ; ls -gorRS
       - name: Upload ${{ matrix.name }} artifact
         id: upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.name }}
           path: 'out/**'
